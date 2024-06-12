@@ -32,3 +32,10 @@ export const RegisterBtn = styled.button`
   width: 90px;
   cursor: pointer;
 `
+export const ResultHeading = styled(MainHeading)`
+  color: #2563eb;
+`
+export const ResultSentence = styled(RegisterSentence)`
+  color: #334155;
+  font-size: 30px;
+`

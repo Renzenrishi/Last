@@ -7,6 +7,8 @@ import {
   MainHeading,
   RegisterSentence,
   RegisterBtn,
+  ResultHeading,
+  ResultSentence,
 } from './styledComponent'
 
 import RegisterContext from '../../context/RegisterContext'
@@ -27,10 +29,10 @@ const Home = () => (
           <Content>
             {isRegister ? (
               <>
-                <MainHeading>Hello {name}</MainHeading>
-                <RegisterSentence className="register-sentence">
+                <ResultHeading>Hello {name}</ResultHeading>
+                <ResultSentence className="register-sentence">
                   Welcome to {topic}
-                </RegisterSentence>
+                </ResultSentence>
               </>
             ) : (
               <>

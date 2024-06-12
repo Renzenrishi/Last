@@ -61,9 +61,6 @@ class App extends Component {
   render() {
     const {name, topic, showSubmitError, isRegister} = this.state
 
-    console.log(name)
-    console.log(topic)
-
     return (
       <RegisterContext.Provider
         value={{
