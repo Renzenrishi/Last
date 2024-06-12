@@ -1,9 +1,8 @@
 import React from 'react'
 
-
 const RegisterContext = React.createContext({
-    name : ''
-    topic : ''
+  nameX: '',
+  topicX: '',
 })
 
 export default RegisterContext
