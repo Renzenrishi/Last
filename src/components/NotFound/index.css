@@ -1,0 +1,19 @@
+.NotFoundContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.NotFoundImg {
+  height: 40vh;
+}
+
+.NotFoundHeading {
+  color: #64748b;
+}
+
+.NotFoundPara {
+  color: #475569;
+}
