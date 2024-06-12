@@ -1,8 +1,7 @@
-import {Component} from 'react'
-
 import {HomePage, Nav} from '../Home/styledComponent'
 
 import './index.css'
+
 import RegisterContext from '../../context/RegisterContext'
 
 const topicsList = [
@@ -28,43 +27,31 @@ const topicsList = [
   },
 ]
 
-class Register extends Component {
-  state = {
-    name: '',
-    topic: topicsList[0].displayText,
-    showSubmitError: false,
-  }
+const Register = props => (
+  <RegisterContext.Consumer>
+    {value => {
+      const {
+        name,
+        changeName,
+        changeTopic,
+        showSubmitError,
+        registerName,
+        updateError,
+      } = value
 
-  getValue = event => {
-    this.setState({name: event.target.value})
-  }
+      const registerNow = event => {
+        event.preventDefault()
 
-  getTopic = event => {
-    const topic = topicsList.filter(
-      eachTopic => eachTopic.id === event.target.value,
-    )
+        if (name === '') {
+          updateError()
+        } else {
+          const {history} = props
+          history.replace('/')
+          registerName()
+        }
+      }
 
-    this.setState({topic: topic[0].displayText})
-  }
-
-  registerNow = event => {
-    event.preventDefault()
-    const {name} = this.state
-
-    if (name === '') {
-      this.setState({showSubmitError: true})
-    } else {
-      const {history} = this.props
-
-      history.replace('/')
-    }
-  }
-
-  render() {
-    const {name, topic, showSubmitError} = this.state
-
-    return (
-      <RegisterContext.Provider value={{nameX: name, topicX: topic}}>
+      return (
         <HomePage>
           <Nav>
             <img
@@ -80,22 +67,21 @@ class Register extends Component {
               />
             </div>
 
-            <form className="FormContainer" onSubmit={this.registerNow}>
+            <form className="FormContainer" onSubmit={registerNow}>
               <h1 className="form-heading">Let us join</h1>
               <label htmlFor="name">NAME</label>
               <input
                 type="text"
                 id="name"
                 className="input-bar"
-                value={name}
-                onChange={this.getValue}
+                onChange={event => changeName(event.target.value)}
               />
               <label htmlFor="topic">TOPICS</label>
               <select
                 type="text"
                 id="topic"
                 className="input-bar"
-                onChange={this.getTopic}
+                onChange={event => changeTopic(event.target.value)}
               >
                 {topicsList.map(each => (
                   <option key={each.id} value={each.id}>
@@ -113,9 +99,9 @@ class Register extends Component {
             </form>
           </div>
         </HomePage>
-      </RegisterContext.Provider>
-    )
-  }
-}
+      )
+    }}
+  </RegisterContext.Consumer>
+)
 
 export default Register

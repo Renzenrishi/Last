@@ -8,15 +8,13 @@ import {
   RegisterSentence,
   RegisterBtn,
 } from './styledComponent'
+
 import RegisterContext from '../../context/RegisterContext'
 
 const Home = () => (
   <RegisterContext.Consumer>
     {value => {
-      const {name, topic} = value
-
-      console.log(name)
-      console.log(topic)
+      const {isRegister, name, topic} = value
 
       return (
         <HomePage>
@@ -27,13 +25,24 @@ const Home = () => (
             />
           </Nav>
           <Content>
-            <MainHeading>Welcome to Meetup</MainHeading>
-            <RegisterSentence className="register-sentence">
-              Please register for the topic
-            </RegisterSentence>
-            <Link to="/register">
-              <RegisterBtn type="button">Register</RegisterBtn>
-            </Link>
+            {isRegister ? (
+              <>
+                <MainHeading>Hello {name}</MainHeading>
+                <RegisterSentence className="register-sentence">
+                  Welcome to {topic}
+                </RegisterSentence>
+              </>
+            ) : (
+              <>
+                <MainHeading>Welcome to Meetup</MainHeading>
+                <RegisterSentence className="register-sentence">
+                  Please register for the topic
+                </RegisterSentence>
+                <Link to="/register">
+                  <RegisterBtn type="button">Register</RegisterBtn>
+                </Link>
+              </>
+            )}
 
             <img
               src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
